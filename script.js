@@ -1,6 +1,6 @@
 const libraryContainer = document.getElementById('library');
 const addBookBtn = document.getElementById('add-book-btn');
-const bookInputWindow = document.getElementById('book-input-window');
+const newBookWindow = document.getElementById('book-input-window');
 const titleInput = document.getElementById('book-title');
 const authorInput = document.getElementById('book-author');
 const pagesInput = document.getElementById('book-pages');
@@ -14,17 +14,13 @@ function Book(title, author, pages, hasRead) {
     this.author = author;
     this.pages = pages;
     this.hasRead = hasRead;
-    this.info = () => {
-        return `${this.title} by ${this.author}, ${this.pages} pages, ${this.hasRead}`
-    };
 }
 
 const addBookToLibrary = () => {
     let newBook = new Book(titleInput.value, authorInput.value, pagesInput.value, false);
-    newBook.index++;
     myLibrary.push(newBook);
     clearInputs();
-    closeBookInputWindow();
+    closeNewBookWindow();
     showLibrary();
 }
 
@@ -36,56 +32,67 @@ const clearInputs = () => {
 
 const showLibrary = () => {
     libraryContainer.innerHTML=``;
+    // loop through books and show them in the library container
     myLibrary.forEach((book, index) => {
         book.id = index;
+        let hasReadText = book.hasRead ? "Already read" : "Haven't read yet";
+        let hasReadColor = book.hasRead ? "#b9efce" : "#e4e2e2";
         libraryContainer.innerHTML += `
         <div class="book" id="book-${book.id}">
             <span class="book-title">${book.title}</span>
             <span class="book-author">${book.author}</span>
             <span class="book-pages">${book.pages}</span>
-            <button class="has-read-btn">Haven't read this</button>
+            <button class="has-read-btn" value="${book.id}" style="background-color:${hasReadColor}">${hasReadText}</button>
             <button class="remove-btn" value="${book.id}">Remove</button>
         </div>
         `
+    });
+
+    const hasReadBtns = document.querySelectorAll('.has-read-btn');
+    hasReadBtns.forEach(button => {
+        button.addEventListener('click', () => {
+            // update the book's hasRead state
+            myLibrary[button.value].hasRead = !myLibrary[button.value].hasRead;
+            let hasRead = myLibrary[button.value].hasRead;
+
+            // update the button state
+            button.textContent = hasRead ? "Already read" : "Haven't read yet";
+            button.style.backgroundColor = hasRead ? "#b9efce" : "#e4e2e2";
         });
+    });
 
-        //each book should have a button to set whether it's been read or not (hasRead = !hasRead).
-        //if button clicked -> set hasRead to opposite + change button text & color
-
+    // remove respective book from the library
     const removeBtns = document.querySelectorAll('.remove-btn');
     removeBtns.forEach(button => {
         button.addEventListener('click', () => {
-            removeBook(button.value);
+            const index = button.value;
+            document.getElementById(`book-${index}`).remove();
+            myLibrary.splice(index, 1);
             showLibrary();
         });
     });
 }
 
-const removeBook = (index) => {
-    document.getElementById(`book-${index}`).remove();
-    myLibrary.splice(index, 1);
-}
-
-const showBookInputWindow = () => {
-    if (getComputedStyle(bookInputWindow).display === "none") {
-        bookInputWindow.style.display = "flex";
+const displayNewBookWindow = () => {
+    if (getComputedStyle(newBookWindow).display === "none") {
+        newBookWindow.style.display = "flex";
         libraryContainer.style.filter = "blur(5px)";
     } else {
         return;
     }
 }
 
-const closeBookInputWindow = (event = null) => {
-    if (event && event.target && event.target !== addBookBtn && !bookInputWindow.contains(event.target)) {
-        bookInputWindow.style.display = "none";
+const closeNewBookWindow = (event = null) => {
+    if (event && event.target && event.target !== addBookBtn && !newBookWindow.contains(event.target)) {
+        newBookWindow.style.display = "none";
         libraryContainer.style.filter = "none";
     } else if (!event) {
-        bookInputWindow.style.display = "none";
+        newBookWindow.style.display = "none";
         libraryContainer.style.filter = "none";
     }
 }
 
-addBookBtn.addEventListener('click', showBookInputWindow);
+addBookBtn.addEventListener('click', displayNewBookWindow);
 submitBookBtn.addEventListener('click', event => {
     if (titleInput.value === "" || authorInput.value === "" || pagesInput.value === "") {
         return;
@@ -93,4 +100,4 @@ submitBookBtn.addEventListener('click', event => {
     event.preventDefault();
     addBookToLibrary();
 });
-document.addEventListener('click', closeBookInputWindow);
+document.addEventListener('click', closeNewBookWindow);
