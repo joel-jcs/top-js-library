@@ -7,17 +7,51 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="navbar"></div>
-    <div id="main-container">
-        <div id="library">
-            <div class="book">Book1</div>
-            <div class="book">Book2</div>
-            <div class="book">Book3</div>
-            <div class="book">Book4</div>
-            <div class="book">Book5</div>
+    <header id="navbar">
+        <div class="container">
+            <span id="logo">booklib</span>
         </div>
-        <button>+ NEW BOOK</button>
-    </div>
+    </header>
+    <main class="container">
+        <div id="library">
+            <div class="book">
+                <span class="book-title">Book1</span>
+                <span class="book-author">Author1</span>
+                <span class="book-pages">Pages1</span>
+                <button class="has-read-btn">Haven't read this</button>
+                <button class="remove-btn">Remove</button>
+            </div>
+            <div class="book">
+                <span class="book-title">Book2</span>
+                <span class="book-author">Author1</span>
+                <span class="book-pages">Pages1</span>
+                <button class="has-read-btn">Haven't read this</button>
+                <button class="remove-btn">Remove</button>
+            </div>
+            <div class="book">
+                <span class="book-title">Book3</span>
+                <span class="book-author">Author1</span>
+                <span class="book-pages">Pages1</span>
+                <button class="has-read-btn">Haven't read this</button>
+                <button class="remove-btn">Remove</button>
+            </div>
+            <div class="book">
+                <span class="book-title">Book4</span>
+                <span class="book-author">Author1</span>
+                <span class="book-pages">Pages1</span>
+                <button class="has-read-btn">Haven't read this</button>
+                <button class="remove-btn">Remove</button>
+            </div>
+            <div class="book">
+                <span class="book-title">Book5</span>
+                <span class="book-author">Author1</span>
+                <span class="book-pages">Pages1</span>
+                <button class="has-read-btn">Haven't read this</button>
+                <button class="remove-btn">Remove</button>
+            </div>
+        </div>
+        <button id="new-book-btn">+ NEW BOOK</button>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
