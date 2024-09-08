@@ -16,18 +16,21 @@ function Book(title, author, pages, hasRead) {
     this.hasRead = hasRead;
 }
 
-const addBookToLibrary = () => {
-    let newBook = new Book(titleInput.value, authorInput.value, pagesInput.value, false);
-    myLibrary.push(newBook);
+Book.prototype.addBookToLibrary = function() {
+    myLibrary.push(this);
     clearInputs();
     closeNewBookWindow();
     showLibrary();
 }
 
-const clearInputs = () => {
-    titleInput.value = "";
-    authorInput.value = "";
-    pagesInput.value = "";
+Book.prototype.removeBookFromLibrary = function() {
+    const index = myLibrary.indexOf(this);
+    if (index !== -1) {
+        myLibrary.splice(index, 1);
+        document.getElementById(`book-${index}`).remove();
+        console.log("index of book removed", index)
+        showLibrary();
+    }
 }
 
 const showLibrary = () => {
@@ -63,12 +66,9 @@ const showLibrary = () => {
 
     // remove respective book from the library
     const removeBtns = document.querySelectorAll('.remove-btn');
-    removeBtns.forEach(button => {
-        button.addEventListener('click', () => {
-            const index = button.value;
-            document.getElementById(`book-${index}`).remove();
-            myLibrary.splice(index, 1);
-            showLibrary();
+    removeBtns.forEach((removeBtn, index) => {
+        removeBtn.addEventListener('click', () => {
+            myLibrary[index].removeBookFromLibrary();
         });
     });
 }
@@ -80,6 +80,12 @@ const displayNewBookWindow = () => {
     } else {
         return;
     }
+}
+
+const clearInputs = () => {
+    titleInput.value = "";
+    authorInput.value = "";
+    pagesInput.value = "";
 }
 
 const closeNewBookWindow = (event = null) => {
@@ -98,6 +104,7 @@ submitBookBtn.addEventListener('click', event => {
         return;
     }
     event.preventDefault();
-    addBookToLibrary();
+    let newBook = new Book(titleInput.value, authorInput.value, pagesInput.value, false);
+    newBook.addBookToLibrary();
 });
 document.addEventListener('click', closeNewBookWindow);
