@@ -25,11 +25,18 @@ Book.prototype.addBookToLibrary = function() {
 
 Book.prototype.removeBookFromLibrary = function() {
     const index = myLibrary.indexOf(this);
-    if (index !== -1) {
+    if (index !== -1) { //quick check to ensure that book exists
         myLibrary.splice(index, 1);
         document.getElementById(`book-${index}`).remove();
-        console.log("index of book removed", index)
         showLibrary();
+    }
+}
+
+Book.prototype.changeBookReadState = function () {
+    const index = myLibrary.indexOf(this);
+    if (index !== -1) {
+        // update the book's hasRead state and set its new value to hasReadValue, to be used in ternary operator that follows
+        return myLibrary[index].hasRead = !myLibrary[index].hasRead;
     }
 }
 
@@ -45,22 +52,20 @@ const showLibrary = () => {
             <span class="book-title">${book.title}</span>
             <span class="book-author">${book.author}</span>
             <span class="book-pages">${book.pages}</span>
-            <button class="has-read-btn" value="${book.id}" style="background-color:${hasReadColor}">${hasReadText}</button>
-            <button class="remove-btn" value="${book.id}">Remove</button>
+            <button class="has-read-btn" style="background-color:${hasReadColor}">${hasReadText}</button>
+            <button class="remove-btn">Remove</button>
         </div>
         `
     });
 
     const hasReadBtns = document.querySelectorAll('.has-read-btn');
-    hasReadBtns.forEach(button => {
-        button.addEventListener('click', () => {
-            // update the book's hasRead state
-            myLibrary[button.value].hasRead = !myLibrary[button.value].hasRead;
-            let hasRead = myLibrary[button.value].hasRead;
+    hasReadBtns.forEach((hasReadBtn, index) => {
+        hasReadBtn.addEventListener('click', () => {
+            let hasRead = myLibrary[index].changeBookReadState();
 
-            // update the button state
-            button.textContent = hasRead ? "Already read" : "Haven't read yet";
-            button.style.backgroundColor = hasRead ? "#b9efce" : "#e4e2e2";
+            // update the hasReadBtn state
+            hasReadBtn.textContent = hasRead ? "Already read" : "Haven't read yet";
+            hasReadBtn.style.backgroundColor = hasRead ? "#b9efce" : "#e4e2e2";
         });
     });
 
