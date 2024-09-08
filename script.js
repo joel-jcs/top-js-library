@@ -16,7 +16,7 @@ const addBookToLibrary = () => {
 
 const showLibrary = () => {
     // loop through the myLibrary array and display each book on the page
-    //can be shown on a "table" eah book can be a "card"
+    //can be shown on a "table". each book can be a "card"
 }
 
 // add functionality for user to click a "NEW BOOK" button and show a form where they can input the details for each book
