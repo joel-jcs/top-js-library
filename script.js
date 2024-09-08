@@ -49,6 +49,9 @@ const showLibrary = () => {
         `
         });
 
+        //each book should have a button to set whether it's been read or not (hasRead = !hasRead).
+        //if button clicked -> set hasRead to opposite + change button text & color
+
     const removeBtns = document.querySelectorAll('.remove-btn');
     removeBtns.forEach(button => {
         button.addEventListener('click', () => {
@@ -62,8 +65,6 @@ const removeBook = (index) => {
     document.getElementById(`book-${index}`).remove();
     myLibrary.splice(index, 1);
 }
-
-//each book should have a button to set whether it's been read or not (hasRead = !hasRead).
 
 const showBookInputWindow = () => {
     if (getComputedStyle(bookInputWindow).display === "none") {
@@ -86,6 +87,9 @@ const closeBookInputWindow = (event = null) => {
 
 addBookBtn.addEventListener('click', showBookInputWindow);
 submitBookBtn.addEventListener('click', event => {
+    if (titleInput.value === "" || authorInput.value === "" || pagesInput.value === "") {
+        return;
+    }
     event.preventDefault();
     addBookToLibrary();
 });

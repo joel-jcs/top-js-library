@@ -91,6 +91,10 @@ input {
     padding:0 10px;
 }
 
+input:focus {
+    border: 1.5px solid rgb(44, 100, 231);
+}
+
 #submit-book-btn {
     margin-top:20px;
 }
