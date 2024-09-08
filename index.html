@@ -18,57 +18,22 @@
             <form action="post">
                 <div class="input-container">
                     <label for="book-title">Book Title</label>
-                    <input type="text" id="book-title">
+                    <input type="text" id="book-title" required>
                 </div>
                 <div class="input-container">
                     <label for="book-author">Author</label>
-                    <input type="text" id="book-author">
+                    <input type="text" id="book-author" required>
                 </div>
                 <div class="input-container">
                     <label for="book-pages">Total Pages</label>
-                    <input type="number" id="book-pages">
+                    <input type="number" id="book-pages" required>
                 </div>
                 <button id="submit-book-btn">Add book</button>
             </form>
         </div>
         <div id="library">
-            <div class="book">
-                <span class="book-title">Book1</span>
-                <span class="book-author">Author1</span>
-                <span class="book-pages">Pages1</span>
-                <button class="has-read-btn">Haven't read this</button>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <div class="book">
-                <span class="book-title">Book2</span>
-                <span class="book-author">Author1</span>
-                <span class="book-pages">Pages1</span>
-                <button class="has-read-btn">Haven't read this</button>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <div class="book">
-                <span class="book-title">Book3</span>
-                <span class="book-author">Author1</span>
-                <span class="book-pages">Pages1</span>
-                <button class="has-read-btn">Haven't read this</button>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <div class="book">
-                <span class="book-title">Book4</span>
-                <span class="book-author">Author1</span>
-                <span class="book-pages">Pages1</span>
-                <button class="has-read-btn">Haven't read this</button>
-                <button class="remove-btn">Remove</button>
-            </div>
-            <div class="book">
-                <span class="book-title">Book5</span>
-                <span class="book-author">Author1</span>
-                <span class="book-pages">Pages1</span>
-                <button class="has-read-btn">Haven't read this</button>
-                <button class="remove-btn">Remove</button>
-            </div>
         </div>
-        <button id="new-book-btn">+ NEW BOOK</button>
+        <button id="add-book-btn">+ ADD BOOK</button>
     </main>
     <script src="script.js"></script>
 </body>

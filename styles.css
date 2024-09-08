@@ -49,12 +49,11 @@ main {
     height:800px;
     width:600px;
     margin:0 auto;
-    display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap:1rem;
-    transition:0.2s;
+    transition: 0.3s ease;
     background-color: #fff;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
@@ -100,7 +99,7 @@ input {
     display:grid;
     grid-template-columns: repeat(3, 1fr);
     gap:1rem;
-    transition:0.2s;
+    transition: ease 0.1s;
 }
 
 .book {
@@ -115,6 +114,7 @@ input {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
     height:340px;
     width:260px;
+    transition: ease 0.1s;
 }
 
 button {
@@ -139,6 +139,6 @@ button:active {
     background-color: rgb(228, 226, 226);
 }
 
-#new-book-btn {
-    background-color: rgba(132, 197, 233, 0.345);
+#add-book-btn {
+    background-color: rgba(117, 234, 161, 0.464);
 }
