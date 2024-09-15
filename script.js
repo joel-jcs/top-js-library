@@ -8,35 +8,37 @@ const submitBookBtn = document.getElementById('submit-book-btn');
 
 const myLibrary = [];
 
-function Book(title, author, pages, hasRead) {
-    this.id = null;
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.hasRead = hasRead;
-}
-
-Book.prototype.addBookToLibrary = function() {
-    myLibrary.push(this);
-    clearInputs();
-    closeNewBookWindow();
-    showLibrary();
-}
-
-Book.prototype.removeBookFromLibrary = function() {
-    const index = myLibrary.indexOf(this);
-    if (index !== -1) { //quick check to ensure that book exists
-        myLibrary.splice(index, 1);
-        document.getElementById(`book-${index}`).remove();
+class Book {
+    constructor(title, author, pages, hasRead) {
+        this.id = null;
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.hasRead = hasRead;    
+    }
+    
+    addBookToLibrary() {
+        myLibrary.push(this);
+        clearInputs();
+        closeNewBookWindow();
         showLibrary();
     }
-}
 
-Book.prototype.changeBookReadState = function () {
-    const index = myLibrary.indexOf(this);
-    if (index !== -1) {
-        // update the book's hasRead state and set its new value to hasReadValue, to be used in ternary operator that follows
-        return myLibrary[index].hasRead = !myLibrary[index].hasRead;
+    removeBookFromLibrary() {
+        const index = myLibrary.indexOf(this);
+        if (index !== -1) { //quick check to ensure that book exists
+            myLibrary.splice(index, 1);
+            document.getElementById(`book-${index}`).remove();
+            showLibrary();
+        }
+    }
+
+    changeBookReadState() {
+        const index = myLibrary.indexOf(this);
+        if (index !== -1) {
+            // update the book's hasRead state and set its new value to hasReadValue, to be used in ternary operator that follows
+            return myLibrary[index].hasRead = !myLibrary[index].hasRead;
+        }
     }
 }
 
@@ -82,8 +84,6 @@ const displayNewBookWindow = () => {
     if (getComputedStyle(newBookWindow).display === "none") {
         newBookWindow.style.display = "flex";
         libraryContainer.style.filter = "blur(5px)";
-    } else {
-        return;
     }
 }
 
