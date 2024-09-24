@@ -1,40 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Library</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
     <header id="navbar">
-        <div class="container">
-            <span id="logo">booklib</span>
-        </div>
+      <div class="container">
+        <span id="logo">booklib</span>
+      </div>
     </header>
     <main class="container">
-        <div id="book-input-window">
-            <h1>Enter book details</h1>
-            <form action="post">
-                <div class="input-container">
-                    <label for="book-title">Book Title</label>
-                    <input type="text" id="book-title" required>
-                </div>
-                <div class="input-container">
-                    <label for="book-author">Author</label>
-                    <input type="text" id="book-author" required>
-                </div>
-                <div class="input-container">
-                    <label for="book-pages">Total Pages</label>
-                    <input type="number" id="book-pages" required>
-                </div>
-                <button id="submit-book-btn">Add book</button>
-            </form>
-        </div>
-        <div id="library">
-        </div>
-        <button id="add-book-btn">+ ADD BOOK</button>
+      <div id="book-input-window">
+        <h1>Enter book details</h1>
+        <form action="POST">
+          <div class="input-container">
+            <label for="book-title">Book Title</label>
+            <input type="text" id="book-title" required />
+          </div>
+          <div class="input-container">
+            <label for="book-author">Author</label>
+            <input type="text" id="book-author" required />
+          </div>
+          <div class="input-container">
+            <label for="book-pages">Total Pages</label>
+            <input type="number" id="book-pages" required />
+          </div>
+          <button id="submit-book-btn">Add book</button>
+        </form>
+      </div>
+      <div id="library"></div>
+      <button id="add-book-btn">+ ADD BOOK</button>
     </main>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
